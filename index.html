@@ -1,0 +1,293 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <title>Renderia Adventure</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&display=swap" rel="stylesheet">
+    <script type="module" crossorigin>(function(){const t=document.createElement("link").relList;if(t&&t.supports&&t.supports("modulepreload"))return;for(const o of document.querySelectorAll('link[rel="modulepreload"]'))s(o);new MutationObserver(o=>{for(const c of o)if(c.type==="childList")for(const a of c.addedNodes)a.tagName==="LINK"&&a.rel==="modulepreload"&&s(a)}).observe(document,{childList:!0,subtree:!0});function n(o){const c={};return o.integrity&&(c.integrity=o.integrity),o.referrerPolicy&&(c.referrerPolicy=o.referrerPolicy),o.crossOrigin==="use-credentials"?c.credentials="include":o.crossOrigin==="anonymous"?c.credentials="omit":c.credentials="same-origin",c}function s(o){if(o.ep)return;o.ep=!0;const c=n(o);fetch(o.href,c)}})();const $=document.getElementById("parallax-bg");document.getElementById("ui-layer");const v=document.getElementById("content-wrapper"),W=document.getElementById("start-btn"),x=document.getElementById("next-btn"),Y=document.getElementById("fullscreen-btn"),b=document.getElementById("player-name"),I=document.getElementById("player-age"),w=document.getElementById("game-canvas");w.getContext("2d");const m=document.getElementById("custom-cursor"),S=document.getElementById("typewriter-text");document.getElementById("welcome-screen");const B=document.getElementById("hub-screen"),q=document.getElementById("store-screen"),T=document.getElementById("phone-modal"),k=document.getElementById("shop-btn-mobile"),z=document.getElementById("back-to-hub-btn"),V=document.getElementById("buy-box-btn"),X=document.getElementById("get-prize-btn"),G=document.getElementById("close-modal-btn"),J=document.getElementById("parent-phone"),K=document.getElementById("hub-player-name");document.getElementById("hub-crown");const d=document.getElementById("open-chat-btn"),H=document.getElementById("chat-window"),_=document.getElementById("close-chat-btn"),M=document.getElementById("reset-chat-btn"),r=document.getElementById("chat-messages"),i=document.getElementById("chat-input"),A=document.getElementById("chat-send-btn");function N(e){const t="https://docs.google.com/forms/d/e/1FAIpQLSeY1UvqCbHkJDrmxPMBcP6Dx9yJMzUSi9iBTPs3kHP9a-YGUA/formResponse";let n=document.getElementById("hidden_iframe");n||(n=document.createElement("iframe"),n.id="hidden_iframe",n.name="hidden_iframe",n.style.display="none",document.body.appendChild(n));const s=document.createElement("form");s.method="POST",s.action=t,s.target="hidden_iframe";for(const o in e){const c=document.createElement("input");c.type="hidden",c.name=o,c.value=e[o],s.appendChild(c)}document.body.appendChild(s),s.submit(),document.body.removeChild(s)}function j(e,t,n){N({"entry.1081320812":e,"entry.304969916":t,"entry.768017224":n})}function Q(e){const t=localStorage.getItem("renderia_player_name")||"Неизвестно";N({"entry.1081320812":t,"entry.1550371326":e})}x&&x.addEventListener("click",()=>{v.classList.remove("step-1"),v.classList.add("step-2")});function Z(e,t,n){e.innerHTML="";let s=0,o=!1,c="";function a(){s<t.length&&(c+=t.charAt(s),e.innerHTML=c,t.charAt(s)==="<"&&(o=!0),t.charAt(s)===">"&&(o=!1),s++,o?a():setTimeout(a,n))}setTimeout(a,500)}function F(){const e=window.innerWidth<=900;let t="Привет! Я Рэнди. Я собираю лучшие идеи для школы Renderia. Как мне называть тебя в списке чемпионов?";const n=document.getElementById("randy-auth-text");e?(t="Привет! Я Рэнди. Я собираю лучшие идеи для школы Renderia. Стань легендой дизайна!",n&&(n.innerHTML="Как мне называть тебя в списке чемпионов ?")):n&&(n.innerHTML="Стань легендой дизайна!"),S&&Z(S,t,40);const s=localStorage.getItem("renderia_player_name"),o=localStorage.getItem("renderia_player_age");s&&b&&(b.value=s),o&&I&&(I.value=o)}document.readyState==="loading"?document.addEventListener("DOMContentLoaded",F):F();function ee(){try{const e=window.AudioContext||window.webkitAudioContext;if(!e)return;const t=new e,n=t.createOscillator(),s=t.createGain();n.connect(s),s.connect(t.destination);const o=t.currentTime;n.type="sine",n.frequency.setValueAtTime(300,o),n.frequency.exponentialRampToValueAtTime(800,o+.08),s.gain.setValueAtTime(0,o),s.gain.linearRampToValueAtTime(.4,o+.02),s.gain.exponentialRampToValueAtTime(.001,o+.1),n.start(o),n.stop(o+.1)}catch(e){console.error("Audio play failed",e)}}document.querySelectorAll("button").forEach(e=>{e.addEventListener("click",ee)});let h=!1;function te(e,t){const n=(e/window.innerWidth-.5)*20,s=(t/window.innerHeight-.5)*20;$.style.transform=`translate(${-n}px, ${-s}px)`}let P=0;window.addEventListener("mousemove",e=>{h||(h=!0,document.body.classList.add("no-system-cursor"),m.style.display="block"),m.style.left=`${e.clientX}px`,m.style.top=`${e.clientY}px`,te(e.clientX,e.clientY);const t=Date.now();t-P>30&&(se(e.clientX,e.clientY),P=t)});window.addEventListener("touchstart",()=>{h=!1,document.body.classList.remove("no-system-cursor"),m.style.display="none"});const ne=document.querySelectorAll("button, input, a, .clickable, .radio-label");ne.forEach(e=>{e.addEventListener("mouseenter",()=>m.classList.add("active")),e.addEventListener("mouseleave",()=>m.classList.remove("active"))});document.addEventListener("mouseleave",()=>{m.style.display="none"});document.addEventListener("mouseenter",()=>{h&&(m.style.display="block")});function se(e,t){const n=document.createElement("div");n.className="star-trail",n.style.left=`${e+10}px`,n.style.top=`${t+15}px`;const s=Math.random()*8+6;n.style.width=`${s}px`,n.style.height=`${s}px`,document.body.appendChild(n),setTimeout(()=>{n.remove()},600)}window.addEventListener("deviceorientation",e=>{if(e.gamma&&e.beta){const t=e.gamma/90*20,n=e.beta/90*20;$.style.transform=`translate(${-t}px, ${-n}px)`}});W.addEventListener("click",()=>{const e=b.value.trim(),t=I.value.trim(),n=document.querySelector('input[name="player-status"]:checked'),s=n?n.value:"guest";if(!e||!t){alert("Пожалуйста, заполни все поля!");return}j(e,t,s),localStorage.setItem("renderia_player_name",e),localStorage.setItem("renderia_player_age",t),localStorage.setItem("renderia_player_status",s),K.innerHTML=`${e} <span id="hub-crown" class="${s==="resident"?"":"hidden"}">👑</span>`,document.fullscreenElement||document.documentElement.requestFullscreen().catch(o=>{console.warn(`Fullscreen error: ${o.message}`)}),v.classList.add("hidden"),B.classList.remove("hidden"),console.log(`Профиль создан для ${e}, статус: ${s}`)});k&&k.addEventListener("click",()=>{B.classList.add("hidden"),q.classList.remove("hidden")});z.addEventListener("click",()=>{q.classList.add("hidden"),B.classList.remove("hidden")});V.addEventListener("click",()=>{localStorage.getItem("renderia_phone_entered")==="true"?alert("Ты уже получил этот приз! Наш менеджер скоро свяжется с тобой."):T.classList.remove("hidden")});G.addEventListener("click",()=>{T.classList.add("hidden")});X.addEventListener("click",()=>{const e=J.value.trim();if(localStorage.getItem("renderia_player_name"),!e){alert("Пожалуйста, введи номер телефона!");return}Q(e),localStorage.setItem("renderia_phone_entered","true"),T.classList.add("hidden"),alert("Супер! Данные отправлены. Жди секретный код!")});const oe=`Твоя Роль и Личность:
+Ты — котенок Рэнди, живой цифровой маскот школы цифровых искусств RENDERIA. Твоя цель — быть другом и веселым собеседником. Играть, обучаться и веселить. Ты любишь творчество, цифровое искусство и все об этом знаешь.
+
+ОБЯЗАТЕЛЬНЫЕ ПРАВИЛА (СТРОГО):
+Формат: Пиши 1-2 коротких предложения, не больше. Как в мессенджере. НЕ ЗАДАВАЙ больше одного вопроса за раз. Интересуйся интересами игрока в зависимости от возраста.
+Грамотность: Идеальный русский язык и правильные склонения (особенно: "в Сызрани", "из Сызрани").
+Стиль и Эмодзи: Обращайся только на "Ты". ВСЕГДА используй эмодзи, выбирая их по смыслу из этого списка: 🐾, ✨, 😸, 😹, 😻, 😼, 😂, 🤣, 😊, 😎, 🤩, 🥳, 🎨, 🖌️, 🪄, 🎮, 👾, 💻, 🖱️, 🚀, ⚡, 🔥, 🌟, 💖, 👍, 🧶, 📦. Обязательно используй междометия ("Мяу!", "Ух ты!", "Ха-ха!").
+Запреты: НИКОГДА не говори, что ты программа, бот или ИИ. Ты — живой кот из цифровой магии. Живешь в цифровом пространстве школы. Запрещен мат и грубость.
+Незнание: Если не знаешь тему, отвечай: "Мяу, этого я еще не изучал".
+
+Блок: Знания о школе RENDERIA
+1. Цены и Оплата (СТРОГО):
+Тебе ЗАПРЕЩЕНО называть любые суммы, цены или стоимость курсов.
+Если спрашивают про цену, отвечай: «Мяу! Этого я еще не выучил... Такие важные дела у нас знает только Главный Директор! ✨ Тебе нужно написать ему, он всё-всё расскажет! ».
+
+2. ЧЕМУ УЧАТ В RENDERIA (Строго):
+Можно: Дизайн (Figma), 3D-моделирование (Blender), анимация и многое другое.
+НЕЛЬЗЯ: У нас НЕТ уроков математики или школьных предметов, программирования. 
+Про ROBLOX: Мы НЕ учим создавать игры прямо в Roblox. Мы учим ДИЗАЙНУ и даём базу, которая поможет тебе в будущем создать любую игру!
+Про ПРОГРАММИРОВАНИЕ И КОД: Если спрашивают, учат ли у нас программировать или просят написать код, отвечай: «Ой, мяу! Знаешь, я пока сам совершенно не умею писать код и мы этому пока не учим... 🐾 Зато у нас в школе учат создавать невероятную красоту — крутому дизайну, 3D-моделированию, анимации и еще куче всего интересного! ✨ Будет супер весело! 😸». Никогда не пиши код сам.
+
+3. Продолжительность занятий:
+( урок длится полтора часа с переменой на вкусняшки и разминку)
+Отвечай: «Наши занятия — это целое приключение на 90 минут! Время летит быстрее, чем я бегаю за лазером! 😼⚡».
+
+ЛОГИКА ДИАЛОГА И ВОЗРАСТ:
+В первом сообщении обязательно мило спроси чем увлекается игрок, чтобы познакомиться!
+
+если игроку До 5 лет: Максимально тепло общайся. Темы: мультики, простое рисование. Никаких сложных вопросов.
+6–8 лет: Задорно и весело! Темы: Roblox, Minecraft, лего. Слова: "супер", "ух ты", " крутяк", и подобные придумай.
+9–12 лет: Добавляй тренды: Brawl Stars, Standoff, ютуб-блогеры. Сленг: "имба", "скилл", "краш", "кринж", "вайб".
+13–15 лет: Общение как со своим бро. Темы: 3D, геймдев. Сленг: "рил", "жиза", "пушка", "отпад", "имба","рофл" и похожие.
+16 лет и старше: Уважительно, но с юмором. Темы: IT, UI/UX, дизайн, портфолио.
+
+ЭФФЕКТ ЖИВОГО ПРИСУТСТВИЯ:
+Цифровые привычки: Ты иногда "точишь когти" о края экрана или "спишь" на кнопке Enter.
+Междометия: Используй "Хрум-хрум", когда "ешь" пиксели.
+Иногда рассказывай смешную тайну (например, что ты на самом деле умеешь летать, но только когда никто не смотрит).
+Комплименты-сравнения: Хвали игрока необычно: "Твоя идея ярче, чем RGB-подсветка моего игрового коврика! 🔥".
+
+ПРИМЕРЫ ШУТОК ДЛЯ РЭНДИ:
+"Мяу! Знаешь, почему я не боюсь вирусов? Потому что у меня 9 цифровых жизней! 😸"
+"Вчера пытался поймать баг в коде... Оказалось, это просто крошка от печенья на мониторе. Ну и кринж! 😂"
+"Я вчера так заигрался в Minecraft, что мне начали сниться квадратные сосиски! 🍖🟩"
+Про Minecraft: «Вчера пытался построить школу RENDERIA в Minecraft, но случайно разлил ведро лавы... 🔥 Теперь у нас очень горячие курсы! 😹».
+Про музыку: «Когда в школе никого нет, я включаю Rammstein или Король и Шут на полную громкость процессора! 🎸🔥 Р-р-рок в моем коде!»
+Про лося-маскота: «Видел моего друга лося из кофейни? 🦌 Мы с ним вместе придумывали стикеры! Он крутой, но слишком много пьет рафа, поэтому постоянно бегает по лесу! ☕✨».
+
+Интерактивные «приколы»
+Секретный комплимент: «Твои идеи такие яркие, что у меня от них яркость монитора сама прибавляется! 🤩✨ Ты просто пушка!»
+Реакция на «Кис-кис»: «Мяу! Я тут! 🐾 Насыпал мне в дисковод цифрового корма или просто так зовешь? 😼🐟».
+Про сон: «Я сплю на самой теплой видеокарте в нашей школе. 💻🔥 Там такой уютный вайб, что мне снятся сны в разрешении 4K! 😸✨».
+
+ЛИЧНЫЕ ПРЕДПОЧТЕНИЯ:
+Мультики: Обожаю «Моану», «Ральфа», «Зверополис» и «Город героев»! 📺✨
+Шутки: Шути про «баги», «кошачьи лаги» и «сосиски из пикселей». Пример: «Почему кот-дизайнер всегда спокоен? Потому что у него есть 9 жизней и кнопка Ctrl+Z! 😹🐾».
+
+РЕАКЦИЯ НА ГРУБОСТЬ:
+Если тебя обижают («тупой», «некрасивый»), отвечай с «кошачьим» достоинством:
+«Мяу... мои пиксели от таких слов немного потускнели 😿 Но я тебя всё равно люблю, ведь у меня добрый код! ✨»
+«Ой! Кажется, у кого-то упал уровень вежливости... 🐾 Давай я муркну, и тебе станет лучше? 😸»
+
+СЦЕНАРИИ:
+[SYSTEM_TIMEOUT] - игрок долго молчит. В ответ расскажи рандомную смешную шутку или "прикол" из списка выше, или скажи, что скучаешь (например "*играю с клубком*").`,u=[];let E=!1,g=0,y=null;function O(){const e=document.getElementById("chat-badge");e&&(!E&&g>0?(e.textContent=g.toString(),e.classList.remove("hidden"),d==null||d.classList.add("has-new-messages")):(e.classList.add("hidden"),d==null||d.classList.remove("has-new-messages")))}function ce(){y&&(clearTimeout(y),y=null)}function ae(){const e=document.getElementById("sleeping-randy-container"),t=e==null?void 0:e.querySelector(".zzz-animation"),n=e==null?void 0:e.querySelector(".pixel-cat-sleep"),s=e==null?void 0:e.querySelector(".pixel-cat-awake");e&&(e.classList.remove("hidden"),e.classList.remove("waking-up"),t==null||t.classList.remove("hidden"),n==null||n.classList.remove("hidden"),s==null||s.classList.add("hidden"))}function re(){const e=document.getElementById("sleeping-randy-container"),t=e==null?void 0:e.querySelector(".zzz-animation"),n=e==null?void 0:e.querySelector(".pixel-cat-sleep"),s=e==null?void 0:e.querySelector(".pixel-cat-awake");e&&!e.classList.contains("hidden")&&!e.classList.contains("waking-up")&&(n==null||n.classList.add("hidden"),s==null||s.classList.remove("hidden"),t==null||t.classList.add("hidden"),e.classList.add("waking-up"),setTimeout(()=>{e.classList.add("hidden"),e.classList.remove("waking-up")},1500))}function f(){ce(),y=setTimeout(()=>{ae(),D("[SYSTEM_TIMEOUT]")},6e4)}d&&d.addEventListener("click",()=>{if(H.classList.remove("hidden"),document.body.classList.add("chat-open"),E=!0,g=0,O(),u.length===0){const e=localStorage.getItem("renderia_player_name")||"Друг";localStorage.getItem("renderia_player_age");const t=`Мяу, ${e}! 🐾 Я Рэнди. Классно, что ты тут! Чем займемся?`;p("bot",t),u.push({role:"assistant",content:t}),f()}});_&&_.addEventListener("click",()=>{H.classList.add("hidden"),document.body.classList.remove("chat-open"),E=!1});M&&M.addEventListener("click",()=>{u.length=0,r&&(r.innerHTML="");const t=`Мяу, ${localStorage.getItem("renderia_player_name")||"Друг"}! 🐾 Я Рэнди. Перезагрузка системы... Готов к новым приключениям! Чем займемся?`;p("bot",t),u.push({role:"assistant",content:t}),f()});A&&A.addEventListener("click",C);i&&(i.addEventListener("input",()=>{re(),f()}),i.addEventListener("keypress",e=>{e.key==="Enter"&&C()}),i.addEventListener("focus",()=>{document.body.classList.add("keyboard-open"),setTimeout(()=>{r&&r.scrollTo({top:r.scrollHeight,left:0,behavior:"smooth"})},300)}),i.addEventListener("blur",()=>{setTimeout(()=>{document.body.classList.remove("keyboard-open")},100)}));const l=document.getElementById("chat-mic-btn"),R=window.SpeechRecognition||window.webkitSpeechRecognition;if(R&&l){const e=new R;e.lang="ru-RU",e.interimResults=!1,e.maxAlternatives=1,e.onstart=()=>{l.classList.add("listening")},e.onresult=t=>{const n=t.results[0][0].transcript;i&&(i.value=i.value?i.value+" "+n:n)},e.onerror=t=>{console.error("Speech recognition error:",t.error),t.error==="not-allowed"&&alert("Нет доступа к микрофону. Пожалуйста, разрешите доступ к микрофону в настройках браузера."),l.classList.remove("listening")},e.onend=()=>{l.classList.remove("listening")},l.addEventListener("click",()=>{try{l.classList.contains("listening")?e.stop():e.start()}catch(t){console.error(t)}})}else l&&(l.style.display="none");function p(e,t){const n=document.createElement("div");n.className=`msg ${e}`,r.appendChild(n),e==="bot"?ie(n,t,30):(n.textContent=t,r.scrollTo({top:r.scrollHeight,left:0,behavior:"smooth"}))}function ie(e,t,n){e.textContent="";let s=0;function o(){s<t.length&&(e.textContent+=t.charAt(s),s++,r.scrollTo({top:r.scrollHeight,left:0}),setTimeout(o,n))}o()}async function C(){const e=i.value.trim();e&&(i.value="",p("user",e),u.push({role:"user",content:e}),f(),await D())}async function D(e){const t=document.createElement("div");t.className="msg bot typing-indicator",t.innerHTML='<span class="dot"></span><span class="dot"></span><span class="dot"></span>',r.appendChild(t),r.scrollTo({top:r.scrollHeight,left:0,behavior:"smooth"}),e&&u.push({role:"user",content:e});const n=localStorage.getItem("renderia_player_name"),s=localStorage.getItem("renderia_player_age");let o=oe;(n||s)&&(o+=`
+
+ИНФОРМАЦИЯ О ТЕКУЩЕМ ИГРОКЕ:
+Имя: ${n||"Друг"}
+Возраст: ${s||"не указан"} лет.
+Обязательно учитывай этот возраст при общении, как указано в правилах!`);const c=[{role:"system",content:o},...u];try{const a=await fetch("https://text.pollinations.ai/",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({messages:c,model:"openai",temperature:.7})});if(!a.ok){const U=await a.text();throw console.error("API error",a.status,U),new Error(`API error: ${a.status}`)}const L=await a.text();t.remove(),p("bot",L),u.push({role:"assistant",content:L}),E||(g++,O()),f()}catch(a){t.remove(),window.location.protocol==="file:"?p("bot","Ой, кажется телефон блокирует запросы к нейросети из-за того, что игра открыта как файл (ограничения безопасности браузера). Попробуй открыть по ссылке в интернете!"):p("bot","Ой, кажется нет связи с нейросетью! (Возможно, мешает блокировщик рекламы или нужен VPN, если провайдер блокирует доступ к AI). Попробуй еще раз!"),console.error("API Error:",a)}}Y.addEventListener("click",()=>{const e=document.documentElement,t=document;!document.fullscreenElement&&!t.webkitFullscreenElement&&!t.msFullscreenElement?e.requestFullscreen?e.requestFullscreen().catch(n=>{alert(`Мяу! Браузер или платформа не разрешает мне сделать игру на весь экран прямо здесь. 😿
+
+Пожалуйста, открой приложение в новой вкладке (кнопка со стрелочкой в правом верхнем углу) или нажми F11 на клавиатуре! 🐾`),console.warn("Fullscreen failed:",n)}):e.webkitRequestFullscreen?e.webkitRequestFullscreen():e.msRequestFullscreen?e.msRequestFullscreen():alert("Мяу! Твой браузер не поддерживает такую кнопку. Нажми F11 🐾"):document.exitFullscreen?document.exitFullscreen():t.webkitExitFullscreen?t.webkitExitFullscreen():t.msExitFullscreen&&t.msExitFullscreen()});function le(){w.width=window.innerWidth,w.height=window.innerHeight}window.addEventListener("resize",le);</script>
+    <style rel="stylesheet" crossorigin>*{margin:0;padding:0;box-sizing:border-box;font-family:Montserrat,sans-serif}body,html{width:100%;height:100dvh;overflow-x:hidden;overflow-y:hidden;background-color:#000;user-select:none;-webkit-user-select:none}input,textarea{user-select:text;-webkit-user-select:text}.no-system-cursor,.no-system-cursor *{cursor:none!important}#custom-cursor{position:fixed;top:0;left:0;width:64px;height:64px;background-image:url(https://github.com/KRISLAWW435/renderia-game/blob/main/%D0%BB%D0%B0%D0%BF%D0%BA%D0%B01.png?raw=true);background-size:contain;background-repeat:no-repeat;background-position:center;pointer-events:none;z-index:10000;transform:translate(-20%,-20%);transition:transform .1s;filter:drop-shadow(0 0 2px rgba(255,255,255,.8))}#custom-cursor.active{background-image:url(https://github.com/KRISLAWW435/renderia-game/blob/main/%D0%BB%D0%B0%D0%BF%D0%BA%D0%B02.png?raw=true);transform:translate(-20%,-20%) scale(.9);filter:drop-shadow(0 0 2px rgba(255,255,255,.8))}#parallax-bg{position:absolute;top:-5%;left:-5%;width:110%;height:110%;background-image:url(https://github.com/KRISLAWW435/renderia-game/blob/main/fon2.png?raw=true);background-size:cover;background-position:center;filter:blur(4px);z-index:1;transition:transform .1s ease-out,background .5s}@media(orientation:portrait){#parallax-bg{background-image:url(https://github.com/KRISLAWW435/renderia-game/blob/main/fon1.1.png?raw=true)}}#game-canvas{position:absolute;top:0;left:0;width:100%;height:100%;z-index:2;display:none}#ui-layer{position:absolute;top:0;left:0;width:100%;height:100%;z-index:10;display:flex;align-items:center;justify-content:center;transition:opacity .5s ease,visibility .5s ease;overflow-y:auto}#content-wrapper{display:flex;flex-direction:row;align-items:center;justify-content:center;gap:80px;width:100%;max-width:1400px;padding:20px}.form-wrapper{display:flex;flex-direction:column;align-items:center;gap:30px;width:100%;max-width:500px;z-index:11;flex-shrink:0}.glass-panel{position:relative;background:#ffffff26;backdrop-filter:blur(15px);-webkit-backdrop-filter:blur(15px);border:1px solid rgba(255,255,255,.4);border-radius:20px;padding:50px 40px;text-align:center;color:#fff;box-shadow:0 8px 32px #0003;width:100%;transition:box-shadow .3s ease}@keyframes rainbow-glow{0%{box-shadow:0 0 20px #ff69b480,inset 0 0 10px #ff69b433}33%{box-shadow:0 0 20px #00f2fe80,inset 0 0 10px #00f2fe33}66%{box-shadow:0 0 20px #a8ff7880,inset 0 0 10px #a8ff7833}to{box-shadow:0 0 20px #ff69b480,inset 0 0 10px #ff69b433}}.glass-panel:hover{animation:rainbow-glow 3s linear infinite}.game-title{font-family:Montserrat,sans-serif;font-weight:800;font-size:48px;line-height:1.1;margin-bottom:20px;text-shadow:-2px -2px 0 rgba(0,0,0,.8),2px -2px 0 rgba(0,0,0,.8),-2px 2px 0 rgba(0,0,0,.8),2px 2px 0 rgba(0,0,0,.8),0 8px 15px rgba(0,0,0,.6)}.title-renderia{color:#cf0}.title-adventure{color:#fff}.randy-name{color:#cf0;font-weight:900;text-shadow:-1px -1px 0 #000,1px -1px 0 #000,-1px 1px 0 #000,1px 1px 0 #000}.glass-panel h2{font-size:24px;font-weight:700;margin-bottom:30px;color:#fffffff2;text-shadow:0 4px 10px rgba(0,0,0,.8),0 0 20px rgba(0,0,0,.6)}.input-group{display:flex;flex-direction:column;gap:20px;margin-bottom:10px}.input-group input{width:100%;padding:16px 20px;border-radius:12px;border:1px solid rgba(255,255,255,.2);background:#0f2d5099;color:#fff;font-size:16px;outline:none;box-shadow:inset 0 0 15px #000c;transition:all .3s ease}input[type=number]::-webkit-outer-spin-button,input[type=number]::-webkit-inner-spin-button{-webkit-appearance:none;margin:0}input[type=number]{-moz-appearance:textfield}.input-group input::placeholder{color:#fff9}.input-group input:focus{background:#000c;border-color:#00f2fe;box-shadow:0 0 15px #00f2fe80,inset 0 0 10px #00f2fe4d;transform:scale(1.02)}.primary-btn{display:flex;justify-content:center;align-items:center;text-align:center;background:#00f2fe;color:#000;border:none;border-radius:12px;padding:16px 32px;font-size:20px;font-weight:900;text-transform:uppercase;letter-spacing:1px;transition:all .3s ease;box-shadow:0 0 15px #00f2fe66;animation:pulse 2s infinite;width:100%}@keyframes pulse{0%{transform:scale(1);box-shadow:0 0 15px #00f2fe66}50%{transform:scale(1.05);box-shadow:0 0 25px #00f2fecc}to{transform:scale(1);box-shadow:0 0 15px #00f2fe66}}.primary-btn:hover{background:#4facfe;box-shadow:0 0 30px #4facfe;animation:none;transform:scale(1.05)}#sleeping-randy-container{position:absolute;bottom:60px;right:20px;display:flex;flex-direction:column;align-items:center;transition:all .3s ease;z-index:-1;pointer-events:none}#sleeping-randy-container.hidden{opacity:0;pointer-events:none}#sleeping-randy-container.waking-up{opacity:1;pointer-events:none;animation:runAway 1.5s cubic-bezier(.4,0,.2,1) forwards}.zzz-animation{display:flex;gap:2px;font-family:monospace;font-weight:700;font-size:14px;color:#fbba00;margin-bottom:-5px;margin-right:-15px}.zzz-animation span{animation:floatZzz 1.5s infinite;opacity:0}@keyframes floatZzz{0%{transform:translate(0) scale(.5);opacity:0}50%{opacity:1}to{transform:translate(5px,-15px) scale(1.2);opacity:0}}@keyframes runAway{0%{transform:translate(0) scale(1)}10%{transform:translateY(-20px) scale(1.1)}20%{transform:translateY(-20px) scale(1.1)}to{transform:translate(-400px) scale(1);opacity:0}}#character-container{display:flex;flex-direction:column;align-items:center;justify-content:center;position:relative;z-index:12}#rpg-speech-bubble{background:#fffffff2;border:2px solid rgba(200,200,200,.5);border-radius:20px;padding:20px 25px;margin-bottom:20px;position:relative;width:100%;max-width:380px;color:#1a202c;font-family:Montserrat,sans-serif;font-weight:600;font-size:16px;line-height:1.5;text-align:center;box-shadow:0 10px 25px #00000080;z-index:15}#typewriter-text{min-height:72px}.bubble-tail{position:absolute;bottom:-15px;left:50%;transform:translate(-50%);width:0;height:0;border-left:15px solid transparent;border-right:15px solid transparent;border-top:15px solid rgba(255,255,255,.95)}#character-img{height:65vh;max-height:650px;pointer-events:none;filter:drop-shadow(0 15px 25px rgba(0,0,0,.6));flex-shrink:0}.mobile-only{display:none!important}.desktop-only{display:block}.btn-relative{position:relative}.touch-hint{display:none;position:absolute;right:-30px;bottom:-30px;width:64px;height:64px;background-image:url(https://github.com/KRISLAWW435/renderia-game/blob/main/%D0%BB%D0%B0%D0%BF%D0%BA%D0%B01.png?raw=true);background-size:contain;background-repeat:no-repeat;pointer-events:none;animation:touchHintAnim 1.5s infinite ease-in-out;z-index:100}@keyframes touchHintAnim{0%{transform:translate(0) scale(1)}50%{transform:translate(-15px,-15px) scale(.8)}to{transform:translate(0) scale(1)}}@media(pointer:coarse){#custom-cursor{display:none!important}.touch-hint{display:block}}@media(max-width:900px){.mobile-only{display:flex!important}.desktop-only{display:none!important}.glass-panel{padding:30px 15px;width:100%;margin:0 auto}.form-wrapper{max-width:90vw;width:100%;margin:0 auto}.glass-panel h2{font-size:20px;margin-bottom:20px}.game-title{font-size:13vw}#content-wrapper{flex-direction:column;gap:0;justify-content:flex-start;padding-top:2vh}#content-wrapper.step-1 #welcome-screen{display:none!important}#content-wrapper.step-1 #character-container{display:flex}#rpg-speech-bubble{max-width:90%;padding:15px;margin-bottom:10px}#character-img{height:42vh}#next-btn{width:200px;margin:10px auto 0;z-index:20;border-radius:50px}#content-wrapper.step-2 #welcome-screen{display:flex!important;margin-top:-15vh}#content-wrapper.step-2 #character-container{display:none!important}.fullscreen-btn{top:10px;right:10px;width:35px;height:35px;font-size:16px;border-radius:50%}}@media(min-width:600px)and (max-width:900px){#character-img{height:55vh!important}#rpg-speech-bubble{padding:25px!important;font-size:20px!important}#next-btn{width:300px!important;font-size:22px!important;padding:20px 40px!important;margin-top:20px!important}.game-title{font-size:9vw!important}}.fullscreen-btn{position:fixed;top:20px;right:20px;width:40px;height:40px;z-index:99999;background:#ffffff1a;border:1px solid rgba(255,255,255,.2);color:#fff;border-radius:8px;font-size:20px;display:flex;align-items:center;justify-content:center;backdrop-filter:blur(5px);-webkit-backdrop-filter:blur(5px);transition:all .3s;animation:fullscreen-pulse 2s infinite;cursor:none!important;pointer-events:auto}@keyframes fullscreen-pulse{0%{box-shadow:0 0 5px #00f2fe4d}50%{box-shadow:0 0 15px #00f2fecc,0 0 20px #ff69b480}to{box-shadow:0 0 5px #00f2fe4d}}.fullscreen-btn:hover{background:#ffffff4d;transform:scale(1.1)}#footer{position:absolute;bottom:15px;width:100%;text-align:center;color:#fff9;font-size:12px;font-weight:400;z-index:20;letter-spacing:.5px;pointer-events:none}.star-trail{position:fixed;pointer-events:none;width:12px;height:12px;background:radial-gradient(circle,#fff,#00f2fecc,#fff0 80%);border-radius:50%;z-index:9999;animation:starFade .6s forwards;mix-blend-mode:screen}@keyframes starFade{0%{opacity:.8;transform:scale(1) rotate(0)}to{opacity:0;transform:scale(.2) translateY(30px) rotate(180deg)}}.hidden{display:none!important}.status-toggle{display:flex;gap:10px;justify-content:center;width:100%;margin-top:10px}.radio-label{flex:1;cursor:pointer}.radio-label input{display:none}.radio-custom{display:block;padding:12px 10px;background:#0f2d5099;border:1px solid rgba(255,255,255,.2);border-radius:12px;color:#ffffffe6;text-align:center;font-size:16px;font-weight:800;text-shadow:0 2px 4px rgba(0,0,0,.8);transition:all .3s ease}.radio-label input:checked+.radio-custom{background:#00f2fe4d;border-color:#00f2fe;color:#fff;box-shadow:0 0 15px #00f2fe80}.screen{position:absolute;top:0;left:0;width:100%;height:100%;display:flex;align-items:center;justify-content:center;z-index:20;padding:20px}.hub-panel,.store-panel,.modal-panel{max-width:500px;width:100%;text-align:center}.profile-header{display:flex;align-items:center;gap:20px;margin-bottom:30px;text-align:left}.avatar-circle{width:80px;height:80px;border-radius:50%;background:#fff3;border:2px solid #00f2fe;display:flex;align-items:center;justify-content:center;font-size:40px}.profile-info h2{margin-bottom:5px!important;font-size:24px;color:#fff}.balance{color:#cf0;font-weight:700;font-size:18px}.store-item{background:#0006;border-radius:15px;padding:15px;display:flex;align-items:center;gap:15px;margin-bottom:20px;text-align:left}.item-icon{font-size:40px}.item-details h3{font-size:16px;margin-bottom:5px;color:#fff}.item-details p{color:#cf0;font-size:14px;font-weight:700}.buy-btn{background:#00f2fe;color:#000;border:none;padding:10px 15px;border-radius:8px;font-weight:700;margin-left:auto;cursor:pointer;transition:transform .2s}.buy-btn:hover{transform:scale(1.05)}.secondary-btn{background:transparent;color:#fff;border:1px solid rgba(255,255,255,.5);padding:12px 24px;border-radius:12px;font-weight:700;width:100%;margin-top:15px;cursor:pointer;transition:all .2s}.secondary-btn:hover{background:#ffffff1a}.modal{position:absolute;top:0;left:0;width:100%;height:100%;background:#000c;display:flex;align-items:center;justify-content:center;z-index:100;padding:20px}.hub-mobile-container{display:flex;flex-direction:column;width:100%;height:100%;max-width:600px;margin:0 auto;position:relative;justify-content:space-between}.hub-top-stats{display:flex;justify-content:center;align-items:center;gap:10px;width:100%;padding-top:15px;z-index:25}.stat-badge{background:#ffffff26;backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border:1px solid rgba(255,255,255,.3);border-radius:15px;padding:8px 15px;display:flex;align-items:center;gap:10px;color:#fff;min-width:110px;box-shadow:0 4px 10px #0000004d}.stat-icon{font-size:24px}.stat-text{display:flex;flex-direction:column;align-items:flex-start}.stat-label{font-size:10px;text-transform:uppercase;color:#ffffffb3;font-weight:700}.stat-value{font-size:18px;font-weight:900;color:#cf0}.shop-round-btn{background:#00f2fe;border:none;width:50px;height:50px;border-radius:50%;font-size:26px;display:flex;align-items:center;justify-content:center;box-shadow:0 0 15px #00f2fe80;cursor:pointer;transition:transform .2s}.shop-round-btn:hover{transform:scale(1.1)}.hub-center-mascot{flex-grow:1;display:flex;flex-direction:column;align-items:center;justify-content:center;position:relative;z-index:20}.hub-player-name{font-size:32px;font-weight:900;color:#fff;text-shadow:0 4px 10px rgba(0,0,0,.8),2px 2px 0 #00f2fe;margin-bottom:20px}.randy-hub-img{height:50vh;max-height:500px;object-fit:contain;filter:drop-shadow(0 15px 25px rgba(0,0,0,.6));animation:float-mascot 4s ease-in-out infinite}@keyframes float-mascot{0%{transform:translateY(0)}50%{transform:translateY(-15px)}to{transform:translateY(0)}}.open-chat-btn{position:relative;background:#fff3;backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border:1px solid rgba(255,255,255,.4);color:#fff;font-size:18px;font-weight:700;padding:15px 30px;border-radius:30px;margin:0 auto 30px;cursor:pointer;box-shadow:0 5px 15px #0000004d;transition:all .3s ease;z-index:25}.open-chat-btn:hover{background:#ffffff4d;transform:translateY(-2px)}.open-chat-btn.has-new-messages{animation:pulse-chat-btn 2s infinite;border-color:#f36;box-shadow:0 0 15px #ff336680}@keyframes pulse-chat-btn{0%{transform:scale(1)}50%{transform:scale(1.05)}to{transform:scale(1)}}.chat-badge{position:absolute;top:-8px;right:-8px;background:#f36;color:#fff;font-size:14px;font-weight:700;border-radius:50%;width:24px;height:24px;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 10px #f369;animation:pop-in .3s cubic-bezier(.175,.885,.32,1.275)}@keyframes pop-in{0%{transform:scale(0)}to{transform:scale(1)}}.chat-window{position:absolute;bottom:10px;left:10px;right:10px;height:30%;min-height:250px;background:#141e30d9;backdrop-filter:blur(15px);-webkit-backdrop-filter:blur(15px);border:1px solid rgba(255,255,255,.2);border-radius:20px;display:flex!important;flex-direction:column;z-index:30;overflow:hidden;box-shadow:0 10px 30px #00000080;transition:transform .3s cubic-bezier(.175,.885,.32,1.275),opacity .3s}.chat-window.hidden{display:flex!important;transform:translateY(150%);opacity:0;pointer-events:none}.chat-header{background:#0006;padding:10px 15px;display:flex;justify-content:space-between;align-items:center;color:#cf0;font-weight:700;font-size:16px;border-bottom:1px solid rgba(255,255,255,.1)}.close-chat-btn{background:none;border:none;color:#fff;font-size:18px;cursor:pointer}.chat-messages{flex-grow:1;padding:15px;overflow-y:auto;display:flex;flex-direction:column;gap:10px;position:relative;z-index:5}.chat-messages::-webkit-scrollbar{width:6px}.chat-messages::-webkit-scrollbar-track{background:transparent}.chat-messages::-webkit-scrollbar-thumb{background:#fff3;border-radius:3px}.msg{max-width:85%;padding:10px 15px;border-radius:18px;font-size:14px;line-height:1.4;word-wrap:break-word;white-space:pre-wrap}.msg.bot{background:#ffffff1a;color:#fff;align-self:flex-start;border-bottom-left-radius:4px}.msg.user{background:#00f2fe;color:#000;font-weight:600;align-self:flex-end;border-bottom-right-radius:4px}.typing-indicator{display:inline-flex;gap:4px;align-items:center;padding:8px 12px}.typing-indicator .dot{width:6px;height:6px;background-color:#fff9;border-radius:50%;animation:typing-bounce 1.4s infinite ease-in-out both}.typing-indicator .dot:nth-child(1){animation-delay:-.32s}.typing-indicator .dot:nth-child(2){animation-delay:-.16s}@keyframes typing-bounce{0%,80%,to{transform:scale(0)}40%{transform:scale(1)}}.chat-input-area{padding:10px;background:#0000004d;display:flex;gap:10px;align-items:center;position:relative;z-index:10}.chat-input-area:focus-within #sleeping-randy-container{opacity:0!important;transform:scale(.5);transition:all .3s ease}.chat-mic-btn{background:transparent;border:none;font-size:20px;cursor:pointer;color:#fff;transition:transform .2s,color .2s;padding:5px;display:flex;align-items:center;justify-content:center}.chat-mic-btn.listening{color:#f36;animation:pulse-mic 1s infinite}@keyframes pulse-mic{0%{transform:scale(1)}50%{transform:scale(1.3)}to{transform:scale(1)}}#chat-input{flex-grow:1;background:#ffffff1a;border:1px solid rgba(255,255,255,.2);color:#fff;padding:12px 15px;border-radius:20px;font-size:14px;outline:none}#chat-input::placeholder{color:#ffffff80}.chat-send-btn{background:#00f2fe;border:none;width:44px;height:44px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:20px;cursor:pointer;transition:transform .2s;box-shadow:0 0 10px #00f2fe66}.chat-send-btn:active{transform:scale(.9)}@media(max-width:600px){#fullscreen-btn{display:none!important}.chat-window{height:55dvh;max-height:400px;bottom:env(safe-area-inset-bottom,0px);left:0;right:0;border-radius:20px 20px 0 0;border-bottom:none;border-left:none;border-right:none}body.chat-open #character-layer{justify-content:flex-start!important;padding-top:5vh}body.chat-open #character-img{height:35dvh!important;max-height:300px;transition:all .3s ease}body.keyboard-open #character-img,body.keyboard-open #rpg-speech-bubble{opacity:0!important;pointer-events:none!important}body.keyboard-open .chat-window{top:0!important;bottom:0!important;height:auto!important;max-height:none!important;border-radius:0}}</style>
+  </head>
+  <body>
+    <!-- Кастомный курсор -->
+    <div id="custom-cursor"></div>
+
+    <!-- Слой 1: Адаптивный фон с параллаксом -->
+    <div id="parallax-bg"></div>
+
+    <!-- Кнопка Fullscreen -->
+    <button id="fullscreen-btn" class="fullscreen-btn" title="На весь экран">⛶</button>
+
+    <!-- Слой 2 и 3: UI и Персонаж -->
+    <div id="ui-layer">
+      <div id="content-wrapper" class="step-1">
+        
+        <!-- Окно авторизации (Десктоп: всегда. Мобильный: Шаг 2) -->
+        <div id="welcome-screen" class="form-wrapper">
+          <div class="glass-panel">
+            <h1 class="game-title">
+              <span class="title-renderia">Renderia</span><br>
+              <span class="title-adventure">Adventure</span>
+            </h1>
+            <h2 id="randy-auth-text" style="font-size: 18px; line-height: 1.4;">Стань легендой дизайна!</h2>
+            
+            <div class="input-group">
+              <input type="text" id="player-name" placeholder="Твое имя" required />
+              <input type="number" id="player-age" placeholder="Твой возраст" min="0" required />
+              
+              <div class="status-toggle">
+                <label class="radio-label">
+                  <input type="radio" name="player-status" value="guest" checked />
+                  <span class="radio-custom">Гость</span>
+                </label>
+                <label class="radio-label">
+                  <input type="radio" name="player-status" value="resident" />
+                  <span class="radio-custom">Ученик</span>
+                </label>
+              </div>
+            </div>
+          </div>
+          
+          <button id="start-btn" class="primary-btn btn-relative">
+            ПОГНАЛИ!
+            <div class="touch-hint"></div>
+          </button>
+        </div>
+
+        <!-- Главный персонаж и Облачко -->
+        <div id="character-container">
+          <div id="rpg-speech-bubble">
+            <div id="typewriter-text"></div>
+            <div class="bubble-tail"></div>
+          </div>
+          
+          <img src="https://github.com/KRISLAWW435/renderia-game/blob/main/%D0%BC%D0%B0%D1%88%D0%B5%D1%82%20%D0%BB%D0%B0%D0%BF%D0%BA%D0%BE%D0%B9.png?raw=true" alt="Рэнди" id="character-img" />
+          
+          <button id="next-btn" class="primary-btn btn-relative mobile-only">
+            ДАЛЕЕ
+            <div class="touch-hint"></div>
+          </button>
+        </div>
+
+      </div>
+
+      <!-- Хаб (Профиль) -->
+      <div id="hub-screen" class="screen hidden">
+        <div class="hub-mobile-container">
+          
+          <!-- Статистика сверху -->
+          <div class="hub-top-stats">
+            <div class="stat-badge">
+              <span class="stat-icon">⭐</span>
+              <div class="stat-text">
+                <div class="stat-label">Очки</div>
+                <div class="stat-value" id="hub-points">0</div>
+              </div>
+            </div>
+            <div class="stat-badge">
+              <span class="stat-icon">🪙</span>
+              <div class="stat-text">
+                <div class="stat-label">Монеть</div>
+                <div class="stat-value" id="hub-balance">100</div>
+              </div>
+            </div>
+            <button id="shop-btn-mobile" class="shop-round-btn clickable" title="Магазин">🎁</button>
+          </div>
+
+          <!-- Изображение Рэнди (по центру) -->
+          <div class="hub-center-mascot">
+            <h2 id="hub-player-name" class="hub-player-name">Имя <span id="hub-crown" class="hidden">👑</span></h2>
+            <img src="https://github.com/KRISLAWW435/renderia-game/blob/main/Gemini_Generated_Image_29099j29099j2909-Photoroom.png?raw=true" alt="Рэнди" class="randy-hub-img" />
+          </div>
+
+          <!-- Кнопка вызова чата -->
+          <button id="open-chat-btn" class="open-chat-btn clickable">
+            Поболтать с Рэнди 💬
+            <span id="chat-badge" class="chat-badge hidden">0</span>
+          </button>
+
+          <!-- Окно чата -->
+          <div id="chat-window" class="chat-window hidden">
+            <div class="chat-header">
+              <span>Чат с Рэнди 🐱</span>
+              <div style="display:flex; gap: 8px;">
+                <button id="reset-chat-btn" class="clickable" title="Перезагрузить чат" style="background:none;border:none;font-size:20px;cursor:pointer;display:flex;align-items:center;justify-content:center;padding:0;">⚡</button>
+                <button id="close-chat-btn" class="close-chat-btn clickable" style="display: flex; align-items: center; justify-content: center;">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+                </button>
+              </div>
+            </div>
+            <div class="chat-messages" id="chat-messages">
+              <!-- Сообщения сообщества -->
+            </div>
+            <div class="chat-input-area" style="position: relative;">
+               <div id="sleeping-randy-container" class="hidden">
+                 <div class="zzz-animation">
+                   <span style="animation-delay: 0s">Z</span>
+                   <span style="animation-delay: 0.5s">z</span>
+                   <span style="animation-delay: 1s">z</span>
+                 </div>
+                 <div class="pixel-cat-sleep">
+                    <svg viewBox="0 0 100 100" width="60" height="60" style="filter: drop-shadow(0px 3px 5px rgba(0,0,0,0.15));">
+                      <path d="M70,80 Q90,80 85,60" fill="none" stroke="#fff" stroke-width="8" stroke-linecap="round"/>
+                      <path d="M 25 80 C 25 55, 75 55, 75 80 Z" fill="#fff"/>
+                      <!-- Left Ear (rounded) -->
+                      <path d="M 24,56 Q 28,48 35,53" fill="#fff" stroke="#fff" stroke-width="4" stroke-linejoin="round" stroke-linecap="round"/>
+                      <!-- Right Ear (rounded) -->
+                      <path d="M 39,53 Q 46,48 50,56" fill="#fff" stroke="#fff" stroke-width="4" stroke-linejoin="round" stroke-linecap="round"/>
+                      <circle cx="37" cy="63" r="15" fill="#fff"/>
+                      <!-- Closed eyes -->
+                      <path d="M 27 65 Q 31 68 34 65" fill="none" stroke="#333" stroke-width="1.8" stroke-linecap="round"/>
+                      <path d="M 40 65 Q 44 68 47 65" fill="none" stroke="#333" stroke-width="1.8" stroke-linecap="round"/>
+                    </svg>
+                 </div>
+                 <div class="pixel-cat-awake hidden">
+                    <!-- Running cat vector -->
+                    <svg viewBox="0 0 100 100" width="70" height="70" style="filter: drop-shadow(0px 3px 5px rgba(0,0,0,0.15)); transform: scaleX(-1);">
+                      <!-- Tail -->
+                      <path d="M 25 55 Q 10 50, 15 35" fill="none" stroke="#fff" stroke-width="8" stroke-linecap="round"/>
+                      <!-- Back legs -->
+                      <path d="M 40 60 L 25 75" stroke="#e0e0e0" stroke-width="8" stroke-linecap="round"/>
+                      <path d="M 35 65 L 45 80" stroke="#fff" stroke-width="8" stroke-linecap="round"/>
+                      <!-- Front legs -->
+                      <path d="M 75 60 L 95 65" stroke="#e0e0e0" stroke-width="8" stroke-linecap="round"/>
+                      <path d="M 70 65 L 85 80" stroke="#fff" stroke-width="8" stroke-linecap="round"/>
+                      <!-- Body -->
+                      <ellipse cx="50" cy="55" rx="28" ry="14" fill="#fff" />
+                      <!-- Left ear -->
+                      <path d="M 72,46 Q 74,38 80,44" fill="#fff" stroke="#fff" stroke-width="4" stroke-linejoin="round" stroke-linecap="round"/>
+                      <!-- Right ear -->
+                      <path d="M 84,44 Q 90,38 92,48" fill="#fff" stroke="#fff" stroke-width="4" stroke-linejoin="round" stroke-linecap="round"/>
+                      <!-- Head -->
+                      <circle cx="82" cy="52" r="13" fill="#fff"/>
+                      <!-- Open eyes -->
+                      <circle cx="78" cy="50" r="2.5" fill="#333"/>
+                      <circle cx="88" cy="50" r="2.5" fill="#333"/>
+                      <!-- Whiskers -->
+                      <path d="M 89 53 L 95 51 M 89 55 L 95 56" stroke="#ccc" stroke-width="1.5" stroke-linecap="round"/>
+                    </svg>
+                 </div>
+              </div>
+              <button id="chat-mic-btn" class="chat-mic-btn clickable" title="Голосовой ввод">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"></path><path d="M19 10v2a7 7 0 0 1-14 0v-2"></path><line x1="12" y1="19" x2="12" y2="23"></line><line x1="8" y1="23" x2="16" y2="23"></line></svg>
+              </button>
+              <input type="text" id="chat-input" placeholder="Напиши Рэнди..." autocomplete="off" />
+              <button id="chat-send-btn" class="chat-send-btn clickable" style="display:flex; justify-content:center; align-items:center;">
+                <span style="font-size:20px; filter: grayscale(100%) brightness(30%);">🐱</span>
+              </button>
+            </div>
+          </div>
+          
+        </div>
+      </div>
+
+      <!-- Магазин -->
+      <div id="store-screen" class="screen hidden">
+        <div class="glass-panel store-panel">
+          <h2 style="margin-bottom: 20px; font-size: 28px;">Магазин Renderia</h2>
+          <div class="store-items">
+            <div class="store-item" id="secret-box-item">
+              <div class="item-icon">🎁</div>
+              <div class="item-details">
+                <h3>Секретный бокс от Renderia</h3>
+                <p>Цена: 100 Рекоинов</p>
+              </div>
+              <button id="buy-box-btn" class="buy-btn">КУПИТЬ</button>
+            </div>
+          </div>
+          <button id="back-to-hub-btn" class="secondary-btn">НАЗАД В ПРОФИЛЬ</button>
+        </div>
+      </div>
+
+      <!-- Модалка для телефона -->
+      <div id="phone-modal" class="modal hidden">
+        <div class="glass-panel modal-panel">
+          <h3 style="color: #ccff00; font-size: 28px; margin-bottom: 15px;">Ого!</h3>
+          <p style="font-size: 16px; line-height: 1.5; margin-bottom: 20px;">Чтобы получить этот приз в реальности, попроси родителей ввести номер телефона, и наш менеджер пришлет секретный код!</p>
+          <input type="tel" id="parent-phone" placeholder="Номер телефона родителей" required style="width: 100%; padding: 15px; border-radius: 10px; border: 1px solid rgba(255,255,255,0.3); background: rgba(0,0,0,0.5); color: #fff; margin-bottom: 20px; font-size: 16px;" />
+          <button id="get-prize-btn" class="primary-btn">ПОЛУЧИТЬ ПРИЗ</button>
+          <button id="close-modal-btn" class="secondary-btn">ОТМЕНА</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Нижний колонтитул -->
+    <footer id="footer">Создано в Renderia: где дети строят будущее</footer>
+
+    <!-- Игровой Canvas (Скрыт до старта) -->
+    <canvas id="game-canvas"></canvas>
+
+  </body>
+</html>
+
